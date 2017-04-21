@@ -1,29 +1,22 @@
-腾讯云微信小程序一站式解决方案客户端示例
-=====================================
+# ZJR微信小程序客户端
 
-本示例包含：
+本项目基于[Wafer 服务端 SDK - Node.js](https://github.com/tencentyun/wafer-node-server-sdk)和[腾讯云微信小程序一站式解决方案客户端示例](https://github.com/tencentyun/wafer-client-demo)搭建。需要先部署[ZJR服务端](https://github.com/boyman/zjr-server)作为后端支持。
 
-1. 登录接口使用示例
-2. 进行带会话的网络请求示例
-3. WebSocket 信道服务使用示例
+## 运行
 
-> 注意：所有示例均需要配合解决方案的云资源运行，具体请到[腾讯云控制台](https://console.qcloud.com/la)进行购买和配置。
-
-## 运行示例
-
-云资源准备好之后，修改 `config.js` 里面的服务域名：
+服务端部署好之后，修改 `config.js` 里面的服务域名：
 
 ```js
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'yourid.qcloud.la';
 ```
 
-修改之后，就可以使用微信开发者工具运行本示例。
+修改之后，就可以使用微信开发者工具运行客户端。
 
 ## 源码简介
 
 ```tree
-Demo
+zjr-client
 ├── LICENSE
 ├── README.md
 ├── app.js
@@ -46,8 +39,8 @@ Demo
 
 `app.js` 是小程序入口文件。
 
-`app.json` 是小程序的微信配置，其中指定了本示例的两个页面，页面分别在 `pages/index/` 和 `pages/chat/` 目录下。
+`app.json` 是小程序的微信配置。
 
-`config.js` 是我们小程序自己的业务配置。
+`config.js` 是小程序自己的业务配置。
 
 `vendor/qcloud-weapp-client-sdk` 是[客户端 SDK](https://github.com/tencentyun/weapp-client-sdk) 的一份拷贝。
