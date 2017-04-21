@@ -1,6 +1,6 @@
 # ZJR微信小程序客户端
 
-本项目基于[Wafer 服务端 SDK - Node.js](https://github.com/tencentyun/wafer-node-server-sdk)和[腾讯云微信小程序一站式解决方案客户端示例](https://github.com/tencentyun/wafer-client-demo)搭建。需要先部署[ZJR服务端](https://github.com/boyman/zjr-server)作为后端支持。
+本项目基于[Wafer客户端 SDK](https://github.com/tencentyun/weapp-client-sdk)和[腾讯云微信小程序一站式解决方案客户端示例](https://github.com/tencentyun/wafer-client-demo)搭建。需要先部署[ZJR服务端](https://github.com/boyman/zjr-server)作为后端支持。
 
 ## 运行
 
