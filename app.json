@@ -1,12 +1,30 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/chat/chat"
+        "pages/chat/chat",
+        "pages/add_event/add_event"
     ],
-    "window": {
-        "backgroundTextStyle": "light",
+    "window":{
+        "backgroundTextStyle":"light",
         "navigationBarBackgroundColor": "#333",
-        "navigationBarTitleText": "腾讯云小程序解决方案",
-        "navigationBarTextStyle": "white"
+        "navigationBarTitleText": "召集人",
+        "navigationBarTextStyle":"white"
+    },
+    "tabBar": {
+        "color": "#333",
+        "selectedColor": "green",
+        "borderStyle": "white",
+        "backgroundColor": "#ccc",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "iconPath": "image/icon_component.png",
+            "selectedIconPath": "image/icon_component_HL.png",
+            "text": "组件"
+        }, {
+            "pagePath": "pages/add_event/add_event",
+            "iconPath": "image/add-black.png",
+            "selectedIconPath": "image/add-green.png",
+            "text": "新活动"
+        }]
     }
 }

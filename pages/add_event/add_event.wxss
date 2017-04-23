@@ -1,0 +1,44 @@
+@import "../common/lib/weui.wxss";
+
+label {
+  display: inline-block;
+  min-width: 270rpx;
+  margin-right: 20rpx;
+}
+form{
+  width: 100%;
+}
+.picker-text {
+  margin-left: 20rpx;
+  position: relative;
+}
+progress{
+  width: 100%;
+}
+.progress-box{
+  height: 50rpx;
+}
+.progress-cancel{
+  margin-left: 40rpx;
+}
+textarea {
+    width: 100%;
+    padding: 25rpx 0;
+}
+.textarea-wrp {
+    padding: 0 25rpx;
+    background-color: #FFFFFF;
+}
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+.btn-area{
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.page-section-title{
+  color: #6D6D72;
+  padding-left: 20rpx;
+  font-size: 24rpx;
+}

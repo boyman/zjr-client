@@ -1,17 +1,15 @@
 {
-  "name": "qcloud-weapp-client-demo",
-  "description": "QCloud Wechat App Demo",
+  "name": "zjr-client",
+  "description": "Wechat App",
   "main": "app.js",
   "authors": [
-    "Tencent Clound"
+    "Yongbo Zeng"
   ],
   "license": "MIT",
   "keywords": [
-    "qcloud",
+    "zjr",
     "wechat",
-    "weapp",
-    "demo",
-    "sdk"
+    "weapp"
   ],
   "homepage": "",
   "ignore": [

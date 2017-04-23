@@ -128,6 +128,7 @@ Page({
     openTunnel() {
         // 创建信道，需要给定后台服务地址
         var tunnel = this.tunnel = new qcloud.Tunnel(this.data.tunnelUrl);
+        console.log(this.data.tunnelUrl)
 
         // 监听信道内置消息，包括 connect/close/reconnecting/reconnect/error
         tunnel.on('connect', () => {
