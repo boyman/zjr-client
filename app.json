@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/chat/chat",
-        "pages/add_event/add_event"
+        "pages/add_event/add_event",
+        "pages/event_detail/event_detail"
     ],
     "window":{
         "backgroundTextStyle":"light",
@@ -25,6 +26,11 @@
             "iconPath": "image/add-black.png",
             "selectedIconPath": "image/add-green.png",
             "text": "新活动"
+        }, {
+            "pagePath": "pages/event_detail/event_detail",
+            "iconPath": "image/add-black.png",
+            "selectedIconPath": "image/add-green.png",
+            "text": "detail"
         }]
     }
 }

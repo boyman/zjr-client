@@ -1,0 +1,62 @@
+.event-detail .event-info{
+    padding-top: 5rpx;
+    line-height: 1.2;
+}
+.event-detail .event-info view{
+  margin-bottom: 16rpx;
+}
+.event-name{
+    font-size: 40rpx;
+}
+.guest-count view{
+    display: inline-block;
+}
+.guest-count view:first-child{
+    margin-right: 35rpx;
+}
+.guest-count text{
+    color: #666;
+}
+.event-info{
+  padding: 0 30rpx;
+  flex: 1;
+}
+.event-info view{
+  margin-bottom: 10rpx;
+}
+.event-info .label{
+  margin-right: 5rpx;
+  color: #888;
+}
+.split-item{
+    margin-right: 10rpx;
+}
+.guest-box{
+  margin-bottom: 40rpx;
+  padding: 0 5rpx;
+  display: flex;
+  align-items: center;
+  border: 4rpx solid #ccc;
+}
+.guest-box image{
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+.guest-box text{
+    font-size: 40rpx;
+}
+.btn-area{
+    width: 100%;
+}
+icon{
+    margin: 0 15rpx;
+}
+.with-edit{
+    display: inline-flex;
+}
+.with-edit image{
+    margin-left: 8rpx;
+    width: 30rpx;
+    height: 30rpx;
+}

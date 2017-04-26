@@ -1,0 +1,74 @@
+<import src="../common/head.wxml" />
+
+  <view class="container event-detail">
+  <template is="head" data="{{title: '活动详情'}}"/>
+    <view class="event-item">
+      <view class="event-info">
+        <view><view class="with-edit"><text class="event-name">{{event.name}}</text><image src="../../image/edit.png"></image></view></view>
+        
+        <view><view class="with-edit"><text class="label">时间：</text><text class="event-date">{{event.date_time}}</text><image src="../../image/edit.png"></image></view></view>
+        <view class="hosts">
+          <text class="label">召集人：</text>
+          <block wx:for-items="{{event.hosts}}" wx:for-item="host">
+            <text class="person split-item">{{host}} </text>
+          </block>
+        </view>
+        <view class="special-guest">
+          <text class="label">贵宾：</text>
+          <block wx:for-items="{{event.special_guests}}" wx:for-item="guest">
+            <text class="split-item">{{guest}}</text>
+          </block>
+        </view>
+        <view class="tags">
+          <text class="label">活动关键字：</text>
+          <block wx:for-items="{{event.tags}}" wx:for-item="tag">
+            <text class="tag split-item">{{tag}}</text>
+          </block>
+        </view>
+        <view class="genres">
+          <text class="label">地址：</text>
+          <text class="person">{{event.address}}</text>
+        </view>
+        <view class="guest-count">
+          <view>
+            报名参加(<text>{{event.guest_count}}</text>)
+          </view>
+          <view>
+            关注(<text>{{event.watcher_count}}</text>)
+          </view>
+        </view>
+        <view class="summary">
+          <text class="label">活动简介</text>
+          <view class="content">
+            {{event.summary}}
+          </view>
+        </view>
+        <view class="guest-list">
+          <view class="label">客人名单</view>
+          <block wx:for-items="{{event.guests}}" wx:for-item="guest">
+          <view>
+            <view class="guest-box">
+              <icon class="icon-small" type="clear" size="23" catchtap="clearGuest" data-user="{{guest.name}}"></icon>
+              <image src="{{guest.image}}"></image>
+              <text>{{guest.name}}</text>
+              <icon wx:if="{{!guest.approved}}" class="icon-small" type="success" size="23" catchtap="checkGuest" data-user="{{guest.name}}"></icon>             
+            </view>
+          </view>
+          </block>
+          <button type="default">显示更多...</button>
+          <button type="default" disabled="1">没有更多了</button>
+        </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary">我要报名参加</button>
+      <button type="default">友情关注</button>
+      <button type="default">取消关注</button>
+      <button type="warn">取消报名</button>
+    </view>
+    <button type="default" bindtap="showModal">点击我弹出modal对话框</button>
+<view>
+  <modal title="modal对话框" hidden="{{modalHidden}}" confirm-text="确定" cancel-text="取消"
+  bindconfirm="showModal" bindcancel="showModal">您好，我是modal对话框</modal>
+</view>
+  </view>

@@ -24,7 +24,7 @@ Page({
 	onLoad : function() {
 		var d = new Date(Date.now())
 		this.setData({
-			date : d.getFullYear() + '-' + d.getMonth() + '-' + d.getDay()
+			date : d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate()
 		})
 	},
 	formSubmit : function(e) {
@@ -64,6 +64,12 @@ Page({
 			success (result) {
 				util.showSuccess('请求成功完成');
 				console.log('request success', result);
+
+				if(result && result.data && result.data.savedEvent) {
+					wx.navigateTo({
+						url: '../event_detail/event_detail?id=' + result.data.savedEvent._id + '&skipLoading=true'
+					})
+				}
 			},
 
 			fail (error) {
