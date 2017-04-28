@@ -3,34 +3,32 @@
         "pages/index/index",
         "pages/chat/chat",
         "pages/add_event/add_event",
-        "pages/event_detail/event_detail"
+        "pages/event_detail/event_detail",
+        "pages/list/list",
+        "pages/detail/detail"
     ],
     "window":{
         "backgroundTextStyle":"light",
         "navigationBarBackgroundColor": "#333",
         "navigationBarTitleText": "召集人",
-        "navigationBarTextStyle":"white"
+        "navigationBarTextStyle":"white",
+        "enablePullDownRefresh":true
     },
     "tabBar": {
-        "color": "#333",
-        "selectedColor": "green",
+        "color": "#555",
+        "selectedColor": "#222",
         "borderStyle": "white",
         "backgroundColor": "#ccc",
         "list": [{
             "pagePath": "pages/index/index",
-            "iconPath": "image/icon_component.png",
-            "selectedIconPath": "image/icon_component_HL.png",
-            "text": "组件"
+            "iconPath": "image/list.png",
+            "selectedIconPath": "image/list.png",
+            "text": "我的活动"
         }, {
             "pagePath": "pages/add_event/add_event",
             "iconPath": "image/add-black.png",
-            "selectedIconPath": "image/add-green.png",
-            "text": "新活动"
-        }, {
-            "pagePath": "pages/event_detail/event_detail",
-            "iconPath": "image/add-black.png",
-            "selectedIconPath": "image/add-green.png",
-            "text": "detail"
+            "selectedIconPath": "image/add-black.png",
+            "text": "新建活动"
         }]
     }
 }

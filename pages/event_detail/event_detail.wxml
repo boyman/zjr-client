@@ -1,8 +1,7 @@
 <import src="../common/head.wxml" />
-
-  <view class="container event-detail">
+<view class="container event-detail">
   <template is="head" data="{{title: '活动详情'}}"/>
-    <view class="event-item">
+  <view class="event-item">
       <view class="event-info">
         <view><view class="with-edit"><text class="event-name">{{event.name}}</text><image src="../../image/edit.png"></image></view></view>
         

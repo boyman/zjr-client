@@ -1,0 +1,35 @@
+<view class="page">
+    <block wx:if="{{loading}}">
+        <view>Loading</view>
+    </block>
+    <block wx:else>
+        <view class="page__hd">
+            <view class="page__title with-edit">{{event.name}}<image src="../../image/edit.png"></image></view>
+        </view>
+        <view class="page__bd">
+            <view><view class="with-edit"><text class="label">时间：</text><text class="event-date">{{event.dateTime}}</text><image src="../../image/edit.png"></image></view></view>
+            <view class="hosts">
+              <text class="label">召集人：</text>
+              <text class="person split-item">{{event.createdBy}}</text>
+            </view>
+            <view class="genres">
+              <text class="label">地址：</text>
+              <text class="person">{{event.address}}</text>
+            </view>
+            <view class="guest-count">
+              <view>
+                报名参加(<text>{{event.guests.length}}</text>)
+              </view>
+              <view>
+                关注(<text>{{event.pendingGuests.length}}</text>)
+              </view>
+            </view>
+            <view class="summary">
+              <text class="label">活动简介</text>
+              <view class="content">
+                {{event.description}}
+              </view>
+            </view>
+        </view>
+    </block>
+</view>

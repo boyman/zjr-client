@@ -1,0 +1,8 @@
+.with-edit{
+    display: inline-flex;
+}
+.with-edit image{
+    margin-left: 8rpx;
+    width: 30rpx;
+    height: 30rpx;
+}

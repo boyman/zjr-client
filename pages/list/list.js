@@ -12,15 +12,15 @@ Page({
 		this.listReload()
 	},
 	onPullDownRefresh : function() {
-		console.log("refresh")
-		this.listReload(function(){wx.stopPullDownRefresh()})
+		this.listReload()
 	},
-	listReload : function(whenComplete) {
+	listReload : function() {
 		var that = this;
 		qcloud.request({
 			url : config.service.Url.getMyHostEvents,
 			login : true,
 			success (result) {
+				util.showSuccess('请求成功完成');
 				console.log('request success', result);
 				let events = result.data.events;
 				events.forEach(function(val, idx, rawarray){
@@ -32,13 +32,12 @@ Page({
 			},
 
 			fail (error) {
-				util.showModel('系统出错了', '请联系波哥赶紧修');
+				util.showModel('请求失败', error);
 				console.log('request fail', error);
 			},
 
 			complete () {
 				console.log('request complete');
-				if(whenComplete) whenComplete();
 			}
 		});
 	}

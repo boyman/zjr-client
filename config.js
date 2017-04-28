@@ -17,9 +17,10 @@ var config = {
         // 测试的请求地址，用于测试会话
         requestUrl: `${protocol}${host}/user`,
 
-        // 添加任务请求地址
-        addEventUrl: `${protocol}${host}/add_event`,
-
+        Url: {
+            getMyHostEvents: `${protocol}${host}/get_my_host_events`,
+            addEvent: `${protocol}${host}/add_event`
+        },
         getEventUrl: `${protocol}${host}/get_event`,
 
         // 测试的信道服务地址
