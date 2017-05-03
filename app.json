@@ -12,7 +12,7 @@
     "window":{
         "backgroundTextStyle":"light",
         "navigationBarBackgroundColor": "#333",
-        "navigationBarTitleText": "召集人",
+        "navigationBarTitleText": "新约客",
         "navigationBarTextStyle":"white",
         "enablePullDownRefresh":true
     },
