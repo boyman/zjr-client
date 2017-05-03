@@ -1,0 +1,22 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">共{{total}}位客人</view>
+            <view class="weui-panel__bd">
+
+            <block wx:for="{{guests}}" wx:for-item="guest" wx:key="openId">
+
+                <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{guest.image}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{guest.name}}</view>
+                        <view class="weui-media-box__desc">带{{guest.guests.length}}位客人</view>
+                    </view>
+                </view>
+            </block>
+            </view>
+        </view>
+    </view>
+</view>

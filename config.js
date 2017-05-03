@@ -19,7 +19,10 @@ var config = {
 
         Url: {
             getMyHostEvents: `${protocol}${host}/get_my_host_events`,
-            addEvent: `${protocol}${host}/add_event`
+            addEvent: `${protocol}${host}/add_event`,
+            allEvents: `${protocol}${host}/all_events`,
+            participate: `${protocol}${host}/participate`,
+            unparticipate: `${protocol}${host}/unparticipate`,
         },
         getEventUrl: `${protocol}${host}/get_event`,
 

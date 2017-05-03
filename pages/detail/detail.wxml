@@ -4,31 +4,39 @@
     </block>
     <block wx:else>
         <view class="page__hd">
-            <view class="page__title with-edit">{{event.name}}<image src="../../image/edit.png"></image></view>
+            <view class="page__title with-edit">{{event.name}}</view>
         </view>
         <view class="page__bd">
-            <view><view class="with-edit"><text class="label">时间：</text><text class="event-date">{{event.dateTime}}</text><image src="../../image/edit.png"></image></view></view>
-            <view class="hosts">
-              <text class="label">召集人：</text>
-              <text class="person split-item">{{event.createdBy}}</text>
-            </view>
-            <view class="genres">
-              <text class="label">地址：</text>
-              <text class="person">{{event.address}}</text>
-            </view>
-            <view class="guest-count">
-              <view>
-                报名参加(<text>{{event.guests.length}}</text>)
-              </view>
-              <view>
-                关注(<text>{{event.pendingGuests.length}}</text>)
-              </view>
-            </view>
-            <view class="summary">
-              <text class="label">活动简介</text>
-              <view class="content">
-                {{event.description}}
-              </view>
+            <view class="weui-panel">
+                <view class="weui-panel__hd">组织者：{{event.host}}</view>
+                <view class="weui-panel__bd">
+                    <view class="weui-media-box weui-media-box_text">
+                        <view class="weui-media-box__desc">时间</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.dateTime}}</view>
+                        <view class="weui-media-box__desc">地点</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.address}}</view>
+                        <view class="weui-media-box__desc">活动简介</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.description}}</view>                      
+                        <view class="weui-media-box__info">
+                            <view class="weui-media-box__info__meta" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">关注(<text>{{event.numPendingGuests}}</text>)</view>
+                        </view>
+                    </view>
+                    <view class="page__bd page__bd_spacing">
+                        <block wx:if="{{showParticipate}}">
+                        <button class="weui-btn" type="primary" catchtap="participate" disabled="{{loadingParticipate}}" loading="{{loadingParticipate}}">报名参加</button>
+                        </block>
+                        <block wx:if="{{showUnparticipate}}">
+                        <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
+                        </block>
+                        <block wx:if="{{showWatch}}">
+                        <button class="weui-btn" type="default" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">关注一下</button>
+                        </block>
+                        <block wx:if="{{showUnwatch}}">
+                        <button class="weui-btn" type="default" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
+                        </block>
+                    </view>
+                </view>
             </view>
         </view>
     </block>

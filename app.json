@@ -5,7 +5,9 @@
         "pages/add_event/add_event",
         "pages/event_detail/event_detail",
         "pages/list/list",
-        "pages/detail/detail"
+        "pages/detail/detail",
+        "pages/guests/guests",
+        "pages/search/search"
     ],
     "window":{
         "backgroundTextStyle":"light",
@@ -24,6 +26,11 @@
             "iconPath": "image/list.png",
             "selectedIconPath": "image/list.png",
             "text": "我的活动"
+        },{
+            "pagePath": "pages/search/search",
+            "iconPath": "image/all.png",
+            "selectedIconPath": "image/all.png",
+            "text": "所有活动"
         }, {
             "pagePath": "pages/add_event/add_event",
             "iconPath": "image/add-black.png",

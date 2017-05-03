@@ -1,24 +1,20 @@
 var util = require("../../utils/util");
 var config = require('../../config');
 var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
-var base64 = require("../images/base64");
 
 Page({
-	data: {
-		events: [],
-		participates : []
-	},
-	onLoad : function() {
-		this.listReload()
-	},
-	onPullDownRefresh : function() {
-		console.log("refresh")
-		this.listReload(function(){wx.stopPullDownRefresh()})
-	},
-	listReload : function(whenComplete) {
+    data: {
+    	events : [],
+    	loading : true,
+        inputShowed: false,
+        inputVal: ""
+    },
+    onLoad : function() {
 		var that = this;
 		qcloud.request({
-			url : config.service.Url.getMyHostEvents,
+			// 要请求的地址
+			url : config.service.Url.allEvents,
+			// 请求之前是否登陆，如果该项指定为 true，会在请求之前进行登录
 			login : true,
 			success (result) {
 				console.log('request success', result);
@@ -32,14 +28,13 @@ Page({
 			},
 
 			fail (error) {
-				util.showModel('系统出错了', '请联系波哥赶紧修');
+				util.showModel('系统出错了', '请联系波哥');
 				console.log('request fail', error);
 			},
 
 			complete () {
 				console.log('request complete');
-				if(whenComplete) whenComplete();
 			}
 		});
 	}
-});
+})

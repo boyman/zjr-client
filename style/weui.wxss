@@ -1035,6 +1035,12 @@ icon {
 .weui-search-bar__cancel-btn {
   margin-left: 10px;
   line-height: 28px;
+  color: #bb3542;
+  white-space: nowrap;
+}
+.weui-search-bar__submit-btn {
+  margin-left: 10px;
+  line-height: 28px;
   color: #09BB07;
   white-space: nowrap;
 }
