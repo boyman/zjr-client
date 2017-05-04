@@ -66,8 +66,8 @@ Page({
 				console.log('request success', result);
 
 				if (result && result.data && result.data.savedEvent) {
-					wx.navigateTo({
-						url : '../detail/detail?id=' + result.data.savedEvent._id + '&skipLoading=true'
+					wx.redirectTo({
+						url : '../detail/detail?id=' + result.data.savedEvent._id + '&newEvent=1'
 					})
 				}
 			},

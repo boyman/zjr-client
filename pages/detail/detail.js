@@ -4,6 +4,7 @@ var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
 
 Page({
 	data : {
+	    newEvent : false,
 		event : null,
 		loading : true,
 		options : null,
@@ -21,9 +22,15 @@ Page({
 		loadingWatch : false,
 		showUnwatch : false,
 		loadingUnwatch : false,
+		options : null,
 	},
 	onLoad : function(options) {
 		console.log(options);
+		this.setData({options : options});
+		this.loadEvent()
+	},
+	loadEvent : function() {
+	    var options = this.data.options;
 		var that = this;
 		qcloud.request({
 			// 要请求的地址
@@ -36,6 +43,7 @@ Page({
 				let app = getApp();
 				event.dateTime = event.dateTime.replace(/\-/g, '/').replace(/T/, ' ').replace(/:..\..+/, '')
 				that.setData({
+				    newEvent : options.newEvent == 1,
 					event : event,
 					loading : false,
 					showParticipate : !event.isMine && !event.participated && !event.pending,
@@ -83,7 +91,9 @@ Page({
 					showUnparticipate : true,
 					showWatch : false,
 					showUnwatch : false,
-				})
+					event : result.data.savedEvent,
+				});
+				that.loadEvent()
 			},
 
 			fail (error) {
@@ -112,7 +122,9 @@ Page({
 					showUnparticipate : false,
 					showWatch : true,
 					showUnwatch : false,
-				})
+					event : result.data.savedEvent
+				});
+				that.loadEvent()
 			},
 
 			fail (error) {
@@ -124,5 +136,8 @@ Page({
 				console.log('request complete');
 			}
 		});
-	}
+	},
+    backToIndex : function(e) {
+        wx.switchTab({url : "../index/index"})
+    }
 })

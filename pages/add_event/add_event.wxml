@@ -17,7 +17,7 @@
         <view class="page-section">
           <view class="page-section-title">活动简介（剩余{{descRemain}}字）</view>
           <view class="textarea-wrp">
-            <textarea name="description" auto-height />
+            <textarea name="description" auto-height bindinput="descChange" />
           </view>
         </view>      
         <view class="page-section">

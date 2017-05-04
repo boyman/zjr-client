@@ -2,8 +2,8 @@
  * 小程序配置文件
  */
 
-var protocol = 'https://';
-var host = 'yiyihost.com';
+var protocol = 'http://';
+var host = 'localhost:8444';
 
 var config = {
 
@@ -18,13 +18,13 @@ var config = {
         requestUrl: `${protocol}${host}/user`,
 
         Url: {
-            getMyHostEvents: `${protocol}${host}/get_my_host_events`,
-            addEvent: `${protocol}${host}/add_event`,
-            allEvents: `${protocol}${host}/all_events`,
-            participate: `${protocol}${host}/participate`,
-            unparticipate: `${protocol}${host}/unparticipate`,
+            getMyHostEvents: `${protocol}${host}/event/my_hosting`,
+            addEvent: `${protocol}${host}/event/add`,
+            allEvents: `${protocol}${host}/event/all`,
+            participate: `${protocol}${host}/event/participate`,
+            unparticipate: `${protocol}${host}/event/unparticipate`,
         },
-        getEventUrl: `${protocol}${host}/get_event`,
+        getEventUrl: `${protocol}${host}/event/get`,
 
         // 测试的信道服务地址
         tunnelUrl: `${protocol}${host}/tunnel`,

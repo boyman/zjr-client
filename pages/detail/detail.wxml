@@ -3,6 +3,12 @@
         <view>Loading</view>
     </block>
     <block wx:else>
+        <view wx:if="{{newEvent}}" class="weui-cell">
+            <view class="weui-cell__bd">
+                <button class="weui-btn mini-btn" type="default" size="mini" bindtap="backToIndex">返回我的活动</button>
+            </view>
+            <view class="weui-cell__ft">点这里分享给好友👆</view>
+        </view>
         <view class="page__hd">
             <view class="page__title with-edit">{{event.name}}</view>
         </view>
@@ -12,13 +18,14 @@
                 <view class="weui-panel__bd">
                     <view class="weui-media-box weui-media-box_text">
                         <view class="weui-media-box__desc">时间</view>
-                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.dateTime}}</view>
+                        <view class="weui-article__p">{{event.dateTime}}</view>
                         <view class="weui-media-box__desc">地点</view>
-                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.address}}</view>
+                        <view class="weui-article__p">{{event.address}}</view>
                         <view class="weui-media-box__desc">活动简介</view>
-                        <view class="weui-media-box__title weui-media-box__title_in-text">{{event.description}}</view>                      
+                        <view class="weui-article__p">{{event.description}}</view>                      
                         <view class="weui-media-box__info">
-                            <view class="weui-media-box__info__meta" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
+                            <view class="weui-media-box__info__meta clickable" wx:if="{{event.numGuests!=0}}" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
+                            <view class="weui-media-box__info__meta" wx:if="{{event.numGuests==0}}" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
                             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">关注(<text>{{event.numPendingGuests}}</text>)</view>
                         </view>
                     </view>
