@@ -30,7 +30,7 @@
             "pagePath": "pages/search/search",
             "iconPath": "image/all.png",
             "selectedIconPath": "image/all.png",
-            "text": "所有活动"
+            "text": "其他人的活动"
         }, {
             "pagePath": "pages/add_event/add_event",
             "iconPath": "image/add-black.png",

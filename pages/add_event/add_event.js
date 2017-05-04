@@ -5,7 +5,7 @@ var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
 Page({
 	data : {
 		nameRemain : 20,
-		descRemain : 200,
+		descRemain : 140,
 		addressRemain : 80,
 		date : null,
 		time : '18:00',
@@ -100,7 +100,7 @@ Page({
 	},
 	descChange : function(e) {
 		this.setData({
-			descRemain : 200 -e.detail.value.length
+			descRemain : 140 - e.detail.value.length
 		})
 	}
 })

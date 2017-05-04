@@ -65,7 +65,7 @@ Page({
 	},
 	lookupGuests : function() {
 		wx.navigateTo({
-			url : '../guests/guests'
+			url : '../guests/guests?id=' + this.data.event._id
 		})
 	},
 	onShareAppMessage : function() {
