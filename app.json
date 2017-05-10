@@ -6,8 +6,9 @@
         "pages/event_detail/event_detail",
         "pages/list/list",
         "pages/detail/detail",
-        "pages/guests/guests",
-        "pages/search/search"
+        "pages/detail/guests/guests",
+        "pages/search/search",
+        "pages/detail/bring_guests/bring_guests"
     ],
     "window":{
         "backgroundTextStyle":"light",

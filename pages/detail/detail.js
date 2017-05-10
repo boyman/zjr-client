@@ -63,11 +63,6 @@ Page({
 			}
 		});
 	},
-	lookupGuests : function() {
-		wx.navigateTo({
-			url : '../guests/guests?id=' + this.data.event._id
-		})
-	},
 	onShareAppMessage : function() {
 		return {
 			title : '邀请您参加' + this.data.event.name,

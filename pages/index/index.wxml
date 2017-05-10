@@ -2,35 +2,52 @@
     <view class="page__hd">
         <view class="page__title">我的活动</view>
     </view>
-    <view class="page__bd">
-        <block wx:if="{{events.length>0}}">
-            <view class="weui-cells__title">我组织的活动：</view>
-            <view class="weui-cells weui-cells_after-title">
-                <block wx:for="{{events}}" wx:for-item="event" wx:key="_id">
-                    <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                        <view class="weui-cell__bd">{{event.name}}</view>
-                        <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                    </navigator>
-                </block>
-            </view>
-        </block>        
-        <block wx:else>
-            <view class="weui-cells__title">我没有组织的活动</view>
-        </block>
-        
-        <block wx:if="{{participates.length>0}}">
-            <view class="weui-cells__title">我参加的活动：</view>
-            <view class="weui-cells weui-cells_after-title">
-                <block wx:for="{{events}}" wx:for-item="event" wx:key="_id">
-                    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                        <view class="weui-cell__bd">{{event.name}}</view>
-                        <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                    </navigator>
-                </block>
-            </view>
-        </block>        
-        <block wx:else>
-            <view class="weui-cells__title">我没有参加的活动</view>
-        </block>
+    <view class="page__bd">        
+        <view class="weui-cells__title">我组织的活动：</view>
+        <view wx:if="{{loading}}" class="weui-loadmore">
+           <view class="weui-loading"></view>
+           <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view wx:else>
+            <block wx:if="{{events.length>0}}">
+	           <view class="weui-cells weui-cells_after-title">
+	               <block wx:for="{{events}}" wx:for-item="event" wx:key="_id">
+	                   <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+	                       <view class="weui-cell__bd">{{event.name}}</view>
+	                       <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+	                   </navigator>
+	               </block>
+	           </view>
+            </block>
+            <block wx:else>
+	            <view class="weui-loadmore weui-loadmore_line">
+		            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无正在组织的活动</view>
+		            <navigator open-type="switchTab" url="../add_event/add_event" class="weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">开始组织活动</navigator>
+		        </view>
+            </block>
+        </view>
+
+        <view class="weui-cells__title">我参加的活动：</view>
+        <view wx:if="{{loading}}" class="weui-loadmore">
+           <view class="weui-loading"></view>
+           <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view wx:else>
+            <block wx:if="{{participates.length>0}}">
+               <view class="weui-cells weui-cells_after-title">
+                   <block wx:for="{{participates}}" wx:for-item="event" wx:key="_id">
+                       <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                           <view class="weui-cell__bd">{{event.name}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                       </navigator>
+                   </block>
+               </view>
+            </block>
+            <block wx:else>
+	            <view class="weui-loadmore weui-loadmore_line">
+	                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无待参加的活动</view>
+	            </view>
+            </block>
+        </view>
     </view>
 </view>

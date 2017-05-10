@@ -1,0 +1,25 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">我要携带的客人</view>
+        <view class="page__desc">您可以将活动直接分享给您的好友让他们进入活动页面报名。若您的客人无法使用微信或者更愿意让您替TA报名，那么您可以在这里添加TA的名字进行报名。</view>
+    </view>
+    <view class="page__bd">
+        <block wx:for="{{guests}}" wx:for-index="idx" wx:for-item="guest" wx:key="*this">            
+            <view class="placeholder padding-left">
+                <icon type="cancel"  data-index="{{idx}}" bindtap="deleteGuest" size="24"></icon>
+                <text> {{guest}}</text>
+            </view>
+        </block>
+        <view class="weui-cells__title">请输入客人名字，多个客人以逗号或空格分隔</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="nameChange" placeholder="客人名字" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-btn-area" hidden="{{guests.length==0 || !updated}}">
+            <button class="weui-btn" type="primary" bindtap="updateGuests">确认{{guests.length}}位客人</button>
+        </view>
+    </view>
+</view>

@@ -3,7 +3,9 @@
  */
 
 var protocol = 'http://';
+//var protocol = 'https://';
 var host = 'localhost:8444';
+//var host = 'yiyihost.com'
 
 var config = {
 
@@ -21,9 +23,9 @@ var config = {
             getMyHostEvents : `${protocol}${host}/event/my_hosting`,
             addEvent : `${protocol}${host}/event/add`,
             allEvents : `${protocol}${host}/event/all`,
-            participate : `${protocol}${host}/event/participate`,
-            unparticipate : `${protocol}${host}/event/unparticipate`,
-            guests : `${protocol}${host}/event/guests`,
+            participate : `${protocol}${host}/event/guest/participate`,
+            unparticipate : `${protocol}${host}/event/guest/unparticipate`,
+            guests : `${protocol}${host}/event/guest/get`,
         },
         getEventUrl : `${protocol}${host}/event/get`,
 

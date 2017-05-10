@@ -5,6 +5,7 @@ var base64 = require("../images/base64");
 
 Page({
 	data: {
+		loading: true,
 		events: [],
 		participates : []
 	},
@@ -27,7 +28,8 @@ Page({
 					rawarray[idx].dateTime = val.dateTime.replace(/\-/g, '/').replace(/T/, ' ').replace(/:..\..+/, '')
 				});
 				that.setData({
-					events : events
+					events : events,
+					loading : false,
 				})
 			},
 

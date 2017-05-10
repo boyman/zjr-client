@@ -22,27 +22,36 @@
                         <view class="weui-media-box__desc">地点</view>
                         <view class="weui-article__p">{{event.address}}</view>
                         <view class="weui-media-box__desc">活动简介</view>
-                        <view class="weui-article__p">{{event.description}}</view>                      
+                        <view class="weui-article__p">{{event.description}}</view>
                         <view class="weui-media-box__info">
-                            <view class="weui-media-box__info__meta clickable" wx:if="{{event.numGuests!=0}}" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
-                            <view class="weui-media-box__info__meta" wx:if="{{event.numGuests==0}}" catchtap="lookupGuests">报名参加(<text>{{event.numGuests}}</text>)</view>
-                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">关注(<text>{{event.numPendingGuests}}</text>)</view>
+                            <view class="weui-media-box__info__meta">{{event.numPendingGuests}}人关注</view>
                         </view>
+                        <view class="weui-panel__ft">
+	                        <navigator url="./guests/guests?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
+	                            <view class="weui-cell__bd">报名表({{event.numGuests}}人)</view>
+	                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+	                        </navigator>
+	                    </view>                        
                     </view>
+                    
                     <view class="page__bd page__bd_spacing">
                         <block wx:if="{{showParticipate}}">
                         <button class="weui-btn" type="primary" catchtap="participate" disabled="{{loadingParticipate}}" loading="{{loadingParticipate}}">报名参加</button>
                         </block>
                         <block wx:if="{{showUnparticipate}}">
-                        <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
+                            <navigator url="./bring_guests/bring_guests?eventName={{event.name}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+				                <view class="weui-cell__bd">我的客人</view>
+				                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+				            </navigator>
+                            <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
                         </block>
                         <block wx:if="{{showWatch}}">
                         <button class="weui-btn" type="default" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">关注一下</button>
                         </block>
                         <block wx:if="{{showUnwatch}}">
-                        <button class="weui-btn" type="default" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
+                            <button class="weui-btn" type="default" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
                         </block>
-                    </view>
+                    </view>                    
                 </view>
             </view>
         </view>

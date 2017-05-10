@@ -1,6 +1,6 @@
-var util = require("../../utils/util");
-var config = require('../../config');
-var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
+var util = require("../../../utils/util");
+var config = require('../../../config');
+var qcloud = require('../../../vendor/qcloud-weapp-client-sdk/index');
 
 Page({
     data : {
@@ -10,13 +10,13 @@ Page({
             {
                 name : "张三",
                 openId : "123",
-                image : "../../image/wechatHL.png",
+                image : "../../../image/wechatHL.png",
                 guests : []
             },
             {
                 name : "李四",
                 openId : "456",
-                image : "../../image/wechat.png",
+                image : "../../../image/wechat.png",
                 guests : [ "小孩", "表弟" ]
             }
         ]
