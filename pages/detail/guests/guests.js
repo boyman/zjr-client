@@ -4,34 +4,16 @@ var qcloud = require('../../../vendor/qcloud-weapp-client-sdk/index');
 
 Page({
     data : {
+        loading : true,
         total : 0,
         id : null,
-        guests : [
-            {
-                name : "张三",
-                openId : "123",
-                image : "../../../image/wechatHL.png",
-                guests : []
-            },
-            {
-                name : "李四",
-                openId : "456",
-                image : "../../../image/wechat.png",
-                guests : [ "小孩", "表弟" ]
-            }
-        ]
+        event : null
     },
     onLoad : function(options) {
+        var that = this;
         console.log(options)
         this.setData({
             id : options.id
-        })
-        var total = 0;
-        this.data.guests.forEach(function(g) {
-            total += 1 + g.guests.length
-        })
-        this.setData({
-            total : total
         })
         qcloud.request({
             // 要请求的地址
@@ -40,6 +22,14 @@ Page({
             login : true,
             success (result) {
                 console.log('request success', result);
+                var event = result.data.guests[0]
+                if (!event.guests[0].name)
+                    event.guests = []
+                that.setData({
+                    event : event,
+                    total : event.totalGuests,
+                    loading : false,
+                })
             },
 
             fail (error) {

@@ -20,12 +20,15 @@ var config = {
         requestUrl : `${protocol}${host}/user`,
 
         Url : {
-            getMyHostEvents : `${protocol}${host}/event/my_hosting`,
+            getEventsForMe : `${protocol}${host}/event/for_me`,
             addEvent : `${protocol}${host}/event/add`,
             allEvents : `${protocol}${host}/event/all`,
             participate : `${protocol}${host}/event/guest/participate`,
             unparticipate : `${protocol}${host}/event/guest/unparticipate`,
+            watch : `${protocol}${host}/event/watch`,
+            unwatch : `${protocol}${host}/event/unwatch`,
             guests : `${protocol}${host}/event/guest/get`,
+            test : `${protocol}${host}/event/guest/new_get`,
         },
         getEventUrl : `${protocol}${host}/event/get`,
 

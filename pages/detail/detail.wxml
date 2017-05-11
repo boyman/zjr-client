@@ -24,11 +24,11 @@
                         <view class="weui-media-box__desc">活动简介</view>
                         <view class="weui-article__p">{{event.description}}</view>
                         <view class="weui-media-box__info">
-                            <view class="weui-media-box__info__meta">{{event.numPendingGuests}}人关注</view>
+                            <view class="weui-media-box__info__meta">{{event.totalWatching}}人关注</view>
                         </view>
                         <view class="weui-panel__ft">
 	                        <navigator url="./guests/guests?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
-	                            <view class="weui-cell__bd">报名表({{event.numGuests}}人)</view>
+	                            <view class="weui-cell__bd">客人({{event.totalGuests}}人)</view>
 	                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
 	                        </navigator>
 	                    </view>                        
@@ -46,10 +46,10 @@
                             <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
                         </block>
                         <block wx:if="{{showWatch}}">
-                        <button class="weui-btn" type="default" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">关注一下</button>
+                        <button class="weui-btn" type="default" catchtap="watch" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">关注一下</button>
                         </block>
                         <block wx:if="{{showUnwatch}}">
-                            <button class="weui-btn" type="default" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
+                            <button class="weui-btn" type="default" catchtap="unwatch" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
                         </block>
                     </view>                    
                 </view>

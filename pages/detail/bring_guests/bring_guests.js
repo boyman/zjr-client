@@ -51,6 +51,7 @@ Page({
 		}
 		if(somethingNew) console.log("Should send update")
 		else console.log("Shouldn't send update")
+		console.log(this.data.guests.join(','))
 		wx.navigateBack()
 	}
 });
