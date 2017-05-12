@@ -18,8 +18,8 @@
                 </view>
             </view>
         </view>
-        <view class="weui-btn-area" hidden="{{guests.length==0 || !updated}}">
-            <button class="weui-btn" type="primary" bindtap="updateGuests">确认{{guests.length}}位客人</button>
+        <view class="weui-btn-area" hidden="{{!updated}}">
+            <button class="weui-btn" type="primary" bindtap="updateGuests" disabled="{{updating}}" loading="{{updating}}">确认{{guests.length}}位客人</button>
         </view>
     </view>
 </view>

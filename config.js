@@ -28,6 +28,8 @@ var config = {
             watch : `${protocol}${host}/event/watch`,
             unwatch : `${protocol}${host}/event/unwatch`,
             guests : `${protocol}${host}/event/guest/get`,
+            myGuests : `${protocol}${host}/event/guest/my`,
+            bringGuests : `${protocol}${host}/event/guest/bring`,
             test : `${protocol}${host}/event/guest/new_get`,
         },
         getEventUrl : `${protocol}${host}/event/get`,
