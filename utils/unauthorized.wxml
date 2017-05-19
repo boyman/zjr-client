@@ -1,0 +1,9 @@
+<template name="unauthorized">
+    <view class="page__hd">
+        <view class="page__title">
+            <text>Oh，no！您还没有授权让新约客访问您的最基本信息</text>
+        </view>
+        <view class="page__desc">为了让您的客人或者活动组织者识别您，我们需要知道一点点您的基本信息（仅微信昵称和头像）。授权过程通过标准的微信接口进行，无任何风险。请点击下面按钮开始微信授权，谢谢您的配合！</view>
+        <button class="weui-btn" type="primary" plain="true" bindtap="doAuthorize">开始微信授权</button>
+    </view>
+</template>

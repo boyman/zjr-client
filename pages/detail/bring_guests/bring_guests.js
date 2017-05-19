@@ -67,6 +67,20 @@ Page({
             }
         }
     },
+    nameConfirm : function(e) {
+        var input = e.detail.value
+        if (input.length > 1) {
+            var guests = this.data.guests;
+            guests.push(input);
+            this.setData({
+                guests : guests,
+                updated : true
+            });
+        }
+        return {
+            value : ""
+        }
+    },
     deleteGuest : function(e) {
         var guests = this.data.guests;
         guests.splice(e.target.dataset.index, 1);

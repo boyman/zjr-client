@@ -1,92 +1,96 @@
+<import src="../../utils/unauthorized.wxml" />
+<import src="../../utils/page_loading.wxml" />
+
 <view class="page">
-    <view class="page__hd">
-        <view class="page__title">我的活动</view>
+    <view wx:if="{{pulldownLoading}}" class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">上次更新：{{pageAge}}之前</view>
     </view>
-    <view class="page__bd">        
-        <view class="weui-cells__title">我组织的活动：</view>
-        <view wx:if="{{loading}}" class="weui-loadmore">
-           <view class="weui-loading"></view>
-           <view class="weui-loadmore__tips">正在加载</view>
+    <view wx:if="{{loadingAfterAuth}}" class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">授权成功！正在初始化您的信息，请稍等</view>
+    </view>
+    <view wx:if="{{pageLoading}}">
+        <template is="page_loading"/>
+    </view>
+    <view wx:if="{{!pageLoading && !loadingAfterAuth}}">
+      <view wx:if="{{unauthorized}}">
+          <template is="unauthorized"/>
+      </view>
+      <view wx:if="{{!unauthorized}}">
+        <view class="page__hd">
+            <view class="page__title">我的活动</view>
         </view>
-        <block wx:if="{{events.hosting.length>0}}">
-         <view class="weui-cells weui-cells_after-title">
-             <block wx:for="{{events.hosting}}" wx:for-item="event" wx:key="_id">
-                 <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                     <view class="weui-cell__bd">{{event.name}}</view>
-                     <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                 </navigator>
-             </block>
-         </view>
-        </block>
-        <block wx:else>
-          <view class="weui-loadmore weui-loadmore_line">
-            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无正在组织的活动</view>
-            <navigator open-type="switchTab" url="../add_event/add_event" class="weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">开始组织活动</navigator>
+        <view class="page__bd">        
+            <view class="weui-cells__title">我组织的活动：</view>
+            <block wx:if="{{events.hosting.length>0}}">
+             <view class="weui-cells weui-cells_after-title">
+                 <block wx:for="{{events.hosting}}" wx:for-item="event" wx:key="_id">
+                     <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                         <view class="weui-cell__bd">{{event.name}}</view>
+                         <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                     </navigator>
+                 </block>
+             </view>
+            </block>
+            <block wx:else>
+              <view class="weui-loadmore weui-loadmore_line">
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无正在组织的活动</view>
+                <navigator open-type="switchTab" url="../add_event/add_event" class="weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">开始组织活动</navigator>
+            </view>
+            </block>
+    
+            <view class="weui-cells__title">我参加的活动：</view>
+            <block wx:if="{{events.participating.length>0}}">
+               <view class="weui-cells weui-cells_after-title">
+                   <block wx:for="{{events.participating}}" wx:for-item="event" wx:key="_id">
+                       <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                           <view class="weui-cell__bd">{{event.name}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                       </navigator>
+                   </block>
+               </view>
+            </block>
+            <block wx:else>
+              <view class="weui-loadmore weui-loadmore_line">
+                  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无待参加的活动</view>
+              </view>
+            </block>
+            
+            <view class="weui-cells__title">等待被组织者确认的活动：</view>
+            <block wx:if="{{events.pending.length>0}}">
+               <view class="weui-cells weui-cells_after-title">
+                   <block wx:for="{{events.pending}}" wx:for-item="event" wx:key="_id">
+                       <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                           <view class="weui-cell__bd">{{event.name}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                       </navigator>
+                   </block>
+               </view>
+            </block>
+            <block wx:else>
+              <view class="weui-loadmore weui-loadmore_line">
+                  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无待确认的活动</view>
+              </view>
+            </block>
+            
+            <view class="weui-cells__title">我关注的活动：</view>
+            <block wx:if="{{events.watching.length>0}}">
+               <view class="weui-cells weui-cells_after-title">
+                   <block wx:for="{{events.watching}}" wx:for-item="event" wx:key="_id">
+                       <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                           <view class="weui-cell__bd">{{event.name}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                       </navigator>
+                   </block>
+               </view>
+            </block>
+            <block wx:else>
+              <view class="weui-loadmore weui-loadmore_line">
+                  <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无关注的活动</view>
+              </view>
+            </block>    
         </view>
-        </block>
-
-        <view class="weui-cells__title">我参加的活动：</view>
-        <view wx:if="{{loading}}" class="weui-loadmore">
-           <view class="weui-loading"></view>
-           <view class="weui-loadmore__tips">正在加载</view>
-        </view>
-        <block wx:if="{{events.participating.length>0}}">
-           <view class="weui-cells weui-cells_after-title">
-               <block wx:for="{{events.participating}}" wx:for-item="event" wx:key="_id">
-                   <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                       <view class="weui-cell__bd">{{event.name}}</view>
-                       <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                   </navigator>
-               </block>
-           </view>
-        </block>
-        <block wx:else>
-          <view class="weui-loadmore weui-loadmore_line">
-              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无待参加的活动</view>
-          </view>
-        </block>
-        
-        <view class="weui-cells__title">等待被组织者确认的活动：</view>
-        <view wx:if="{{loading}}" class="weui-loadmore">
-           <view class="weui-loading"></view>
-           <view class="weui-loadmore__tips">正在加载</view>
-        </view>
-        <block wx:if="{{events.pending.length>0}}">
-           <view class="weui-cells weui-cells_after-title">
-               <block wx:for="{{events.pending}}" wx:for-item="event" wx:key="_id">
-                   <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                       <view class="weui-cell__bd">{{event.name}}</view>
-                       <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                   </navigator>
-               </block>
-           </view>
-        </block>
-        <block wx:else>
-          <view class="weui-loadmore weui-loadmore_line">
-              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无待确认的活动</view>
-          </view>
-        </block>
-        
-                <view class="weui-cells__title">我关注的活动：</view>
-        <view wx:if="{{loading}}" class="weui-loadmore">
-           <view class="weui-loading"></view>
-           <view class="weui-loadmore__tips">正在加载</view>
-        </view>
-        <block wx:if="{{events.watching.length>0}}">
-           <view class="weui-cells weui-cells_after-title">
-               <block wx:for="{{events.watching}}" wx:for-item="event" wx:key="_id">
-                   <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                       <view class="weui-cell__bd">{{event.name}}</view>
-                       <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
-                   </navigator>
-               </block>
-           </view>
-        </block>
-        <block wx:else>
-          <view class="weui-loadmore weui-loadmore_line">
-              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无关注的活动</view>
-          </view>
-        </block>
-
+      </view>
     </view>
 </view>

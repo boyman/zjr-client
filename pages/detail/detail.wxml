@@ -44,7 +44,7 @@
 				                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
 				            </navigator>
                         </block>
-                        <block wx:if="{{event.pending}}"><view><icon type="warn" size="23" color="#F43530"></icon>等待被组织者确认</view></block>
+                        <block wx:if="{{event.pending}}"><view><icon type="warn" size="23" color="#F43530"></icon>请等待被组织者确认</view></block>
                         <block wx:if="{{showUnparticipate}}">
                             <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
                         </block>

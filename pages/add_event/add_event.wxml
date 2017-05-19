@@ -66,7 +66,7 @@
             <view class="weui-cell weui-cell_switch">
               <view class="weui-cell__bd">需批准后参加</view>
               <view class="weui-cell__ft">
-                <switch name="need_approve"/>
+                <switch name="needApprove"/>
               </view>
             </view>
           </view>    
@@ -74,7 +74,7 @@
             <view class="weui-cell weui-cell_switch">
               <view class="weui-cell__bd">可以带客人</view>
               <view class="weui-cell__ft">
-                <switch name="allow_guest" checked/>
+                <switch name="allowGuest" checked/>
               </view>
             </view>
           </view>    
@@ -82,16 +82,33 @@
             <view class="weui-cell weui-cell_switch">
               <view class="weui-cell__bd">此活动可被搜索</view>
               <view class="weui-cell__ft">
-                <switch name="allow_search" checked/>
+                <switch name="allowSearch" checked/>
               </view>
             </view>
-          </view>    
-          <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_switch">
-              <view class="weui-cell__bd">名单仅客人可见</view>
-              <view class="weui-cell__ft">
-                <switch name="guest_list_private" checked/>
-              </view>
+          </view>
+          <view class="page-section">
+            <view class="page-section-title">客人名单谁可见？</view>
+            <view class="weui-cells weui-cells_after-title">
+              <radio-group name="guestsVisibility">
+                <label class="weui-cell weui-check__label">      
+                  <view class="weui-cell__hd">
+                    <radio value="0" checked="true"/>
+                  </view>
+                  <view class="weui-cell__bd">所有人可见</view>
+                </label>
+                <label class="weui-cell weui-check__label">      
+                  <view class="weui-cell__hd">
+                    <radio value="1"/>
+                  </view>
+                  <view class="weui-cell__bd">报名成功的客人可见</view>
+                </label>
+                <label class="weui-cell weui-check__label">      
+                  <view class="weui-cell__hd">
+                    <radio value="2"/>
+                  </view>
+                  <view class="weui-cell__bd">只有我可见</view>
+                </label>
+              </radio-group>
             </view>
           </view>
         </view>
