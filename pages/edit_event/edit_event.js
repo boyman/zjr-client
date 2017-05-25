@@ -68,14 +68,16 @@ Page({
         });
     },
     bindDateChange : function(e) {
-        var d = new Date(e.detail.value)
+        var d = util.datetime.stringToDate(e.detail.value)
         this.setData({
             dateValue : e.detail.value,
-            dateDisplay : d.toDateString()
+            dateDisplay : d.toDateString(),
         })
     },
     bindTimeChange : function(e) {
+        console.log(e.detail.value)
         var d = new Date('2000-01-01 ' + e.detail.value)
+        console.log(d)
         this.setData({
             timeValue : e.detail.value,
             timeDisplay : d.toLocaleTimeString()
