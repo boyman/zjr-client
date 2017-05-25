@@ -30,6 +30,8 @@ var config = {
             guests : `${protocol}${host}/event/guest/get`,
             myGuests : `${protocol}${host}/event/guest/my`,
             bringGuests : `${protocol}${host}/event/guest/bring`,
+            thumbnail : `${protocol}${host}/event/thumbnail`,
+            editEvent : `${protocol}${host}/event/edit`,
             test : `${protocol}${host}/event/guest/new_get`,
         },
         getEventUrl : `${protocol}${host}/event/get`,

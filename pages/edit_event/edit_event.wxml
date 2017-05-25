@@ -1,24 +1,20 @@
-<import src="../common/head.wxml" />
+<import src="../../utils/page_loading.wxml" />
 
-<view class="container">
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view wx:if="{{pageLoading}}">
+        <template is="page_loading"/>
+    </view>
+    <view wx:else>
     <view class="page__hd">
-        <view class="page__title">正在创建一个活动</view>
+        <view class="page__title">更新活动：{{event.name}}</view>
     </view>
     <view class="page__bd">
-    <form catchsubmit="formSubmit">
-        <view class="weui-cells__title">活动名称（剩余{{nameRemain}}字）</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__bd">
-                    <input class="weui-input" name="name" placeholder="请输入活动名" maxlength="20" bindinput="nameChange"/>
-                </view>
-            </view>
-        </view>
+        <form catchsubmit="formSubmit">
         <view class="weui-cells__title">活动简介</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" name="description" auto-height bindinput="descChange" placeholder="请输入活动简介"/>
+                    <textarea name="description" class="weui-textarea" auto-height value="{{event.description}}" bindinput="descChange"/>
                     <view class="weui-textarea-counter">{{descRemain}}/140</view>
                 </view>
             </view>
@@ -30,7 +26,7 @@
                     <view class="weui-label">日期</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker name="date" mode="date" value="{{dateValue}}" start="{{today}}" end="2099/12/31" bindchange="bindDateChange">
+                    <picker name="date" mode="date" value="{{dateValue}}" start="2015/09/01" end="2027/09/01" bindchange="bindDateChange">
                         <view class="weui-input">{{dateDisplay}}</view>
                     </picker>
                 </view>
@@ -50,7 +46,7 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input name="address" class="weui-input" placeholder="请输入活动地点" />
+                    <input name="address" class="weui-input" value="{{event.address}}" />
                 </view>
             </view>
         </view>
@@ -59,19 +55,19 @@
             <view class="weui-cell weui-cell_switch">
                 <view class="weui-cell__bd">需批准后参加</view>
                 <view class="weui-cell__ft">
-                    <switch name="needApprove"/>
+                    <switch name="needApprove" checked="{{event.settings.needApprove}}" />
                 </view>
             </view>
             <view class="weui-cell weui-cell_switch">
                 <view class="weui-cell__bd">可以带客人</view>
                 <view class="weui-cell__ft">
-                    <switch name="allowGuest" checked/>
+                    <switch name="allowGuest" checked="{{event.settings.allowGuest}}" />
                 </view>
             </view>
             <view class="weui-cell weui-cell_switch">
                 <view class="weui-cell__bd">活动可被搜索</view>
                 <view class="weui-cell__ft">
-                    <switch name="allowSearch" checked/>
+                    <switch name="allowSearch" checked="{{event.settings.allowSearch}}" />
                 </view>
             </view>
         </view>
@@ -80,27 +76,28 @@
             <radio-group name="guestsVisibility">
                 <label class="weui-cell weui-check__label">      
                   <view class="weui-cell__hd">
-                    <radio value="0" checked/>
+                    <radio value="0" checked="{{event.settings.guestsVisibility==0}}"/>
                   </view>
                   <view class="weui-cell__bd">所有人可见</view>
                 </label>
                 <label class="weui-cell weui-check__label">      
                   <view class="weui-cell__hd">
-                    <radio value="1"/>
+                    <radio value="1" checked="{{event.settings.guestsVisibility==1}}"/>
                   </view>
                   <view class="weui-cell__bd">仅客人可见</view>
                 </label>
                 <label class="weui-cell weui-check__label">      
                   <view class="weui-cell__hd">
-                    <radio value="2"/>
+                    <radio value="2" checked="{{event.settings.guestsVisibility==2}}"/>
                   </view>
                   <view class="weui-cell__bd">只有我可见</view>
                 </label>
             </radio-group>
         </view>
-        <view class="btn-area">
-          <button type="primary" disabled="{{loading}}" loading="{{loading}}" formType="submit">确认创建活动</button>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" disabled="{{submitLoading}}" loading="{{submitLoading}}" formType="submit">确认更新活动</button>
         </view>
-    </form>
-  </view>
+        </form>
+    </view>
+    </view>
 </view>

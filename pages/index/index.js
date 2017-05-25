@@ -15,7 +15,6 @@ Page({
     },
     onLoad : function() {
         this.loadPage()
-    //this.testLoad()
     },
     loadPage : function(completeCallback) {
         var that = this;
@@ -55,7 +54,7 @@ Page({
         let updatedTime = this.data.updatedTime / 1000;
         let now = Date.now() / 1000;
         // 别瞎扯
-        if(this.data.pageLoading || now - updatedTime < 3) {
+        if(this.data.pageLoading || now - updatedTime < 5) {
             wx.stopPullDownRefresh();
             return
         }
@@ -66,25 +65,6 @@ Page({
         this.loadPage(function() {
             wx.stopPullDownRefresh()
         })
-    },
-    // for testing API
-    // TODO: remove
-    testLoad : function() {
-        qcloud.request({
-            url : config.service.Url.test + '?id=5912a1438ee63864114f253e',
-            login : true,
-            success (result) {
-                console.log('request success', result);
-            },
-
-            fail (error) {
-                console.log('request fail', error);
-            },
-
-            complete () {
-                console.log('request complete');
-            }
-        });
     },
     doAuthorize : function() {
         var that = this;
@@ -98,9 +78,6 @@ Page({
                     })
                     that.loadPage()
                 }
-            },
-            fail : (err) => { // TODO: remove this
-                console.log('openSetting failed: ', err)
             }
         })
     }

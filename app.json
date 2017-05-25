@@ -8,7 +8,8 @@
         "pages/detail/detail",
         "pages/detail/guests/guests",
         "pages/search/search",
-        "pages/detail/bring_guests/bring_guests"
+        "pages/detail/bring_guests/bring_guests",
+        "pages/edit_event/edit_event"
     ],
     "window":{
         "backgroundTextStyle":"light",
@@ -27,16 +28,16 @@
             "iconPath": "image/list.png",
             "selectedIconPath": "image/list.png",
             "text": "我的活动"
-        },{
-            "pagePath": "pages/search/search",
-            "iconPath": "image/all.png",
-            "selectedIconPath": "image/all.png",
-            "text": "其他人的活动"
         }, {
             "pagePath": "pages/add_event/add_event",
             "iconPath": "image/add-black.png",
             "selectedIconPath": "image/add-black.png",
             "text": "新建活动"
+        }, {
+            "pagePath": "pages/search/search",
+            "iconPath": "image/all.png",
+            "selectedIconPath": "image/all.png",
+            "text": "其他人的"
         }]
     }
 }

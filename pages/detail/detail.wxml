@@ -1,7 +1,9 @@
+<import src="../../utils/page_loading.wxml" />
+
 <view class="page">
-    <block wx:if="{{loading}}">
-        <view>Loading</view>
-    </block>
+    <view wx:if="{{pageLoading}}">
+        <template is="page_loading"/>
+    </view>
     <block wx:else>
         <view wx:if="{{newEvent}}" class="weui-cell">
             <view class="weui-cell__bd">
@@ -14,7 +16,7 @@
         </view>
         <view class="page__bd">
             <view class="weui-panel">
-                <view class="weui-panel__hd">组织者：{{event.host}}</view>
+                <view class="weui-panel__hd">组织者：{{event.host}}<text wx:if="{{event.isMine}}">（我）</text></view>
                 <view class="weui-panel__bd">
                     <view class="weui-media-box weui-media-box_text">
                         <view class="weui-media-box__desc">时间</view>
@@ -23,12 +25,31 @@
                         <view class="weui-article__p">{{event.address}}</view>
                         <view class="weui-media-box__desc">活动简介</view>
                         <view class="weui-article__p">{{event.description}}</view>
+                        <block wx:if="{{event.isMine}}">
+                            <view class="weui-media-box__desc">活动设置</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.allowGuest}}"><icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>可以带客人</view>
+                            <view class="weui-article__p" wx:else>不可以带客人</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.needApprove}}"><icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>报名需要验证</view>
+                            <view class="weui-article__p" wx:else>报名不需要验证</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.allowSearch}}"><icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>活动可以被搜索</view>
+                            <view class="weui-article__p" wx:else>活动不可以被搜索</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.guestsVisibility==0}}">客人名单所有人可见</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.guestsVisibility==1}}">客人名单仅客人可见</view>
+                            <view class="weui-article__p" wx:if="{{event.settings.guestsVisibility==2}}">客人名单仅我可见</view>
+                        </block>
                         <view class="weui-media-box__info">
                             <view class="weui-media-box__info__meta">{{event.totalWatching}}人关注</view>
+                            <view wx:if="{{!showGuestsLink}}" class="weui-media-box__info__meta">{{event.totalGuests}}人报名(名单不可见)</view>
+                        </view> 
+                        <view wx:if="{{event.isMine}}" class="weui-panel__ft">
+                            <navigator url="../edit_event/edit_event?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
+                                <view class="weui-cell__bd">更新活动</view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
                         </view>
-                        <view class="weui-panel__ft">
+                        <view wx:if="{{showGuestsLink}}" class="weui-panel__ft">
 	                        <navigator url="./guests/guests?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
-	                            <view class="weui-cell__bd">客人({{event.totalGuests}}人)</view>
+	                            <view class="weui-cell__bd">查看客人名单({{event.totalGuests}}人)</view>
 	                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
 	                        </navigator>
 	                    </view>                        
@@ -38,7 +59,7 @@
                         <block wx:if="{{showParticipate}}">
                         <button class="weui-btn" type="primary" catchtap="participate" disabled="{{loadingParticipate}}" loading="{{loadingParticipate}}">报名参加</button>
                         </block>
-                        <block wx:if="{{showUnparticipate&&!event.pending}}">
+                        <block wx:if="{{showUnparticipate&&!event.pending&&event.settings.allowGuests}}">
                             <navigator url="./bring_guests/bring_guests?eventName={{event.name}}&eventId={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
 				                <view class="weui-cell__bd">我的客人</view>
 				                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -49,7 +70,7 @@
                             <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
                         </block>
                         <block wx:if="{{showWatch}}">
-                        <button class="weui-btn" type="default" catchtap="watch" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">关注一下</button>
+                        <button class="weui-btn" type="default" catchtap="watch" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">友情关注</button>
                         </block>
                         <block wx:if="{{showUnwatch}}">
                             <button class="weui-btn" type="default" catchtap="unwatch" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>

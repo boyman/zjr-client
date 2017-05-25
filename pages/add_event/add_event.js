@@ -7,8 +7,11 @@ Page({
 		nameRemain : 20,
 		descRemain : 140,
 		addressRemain : 80,
-		date : null,
-		time : '18:00',
+		dateValue : '',
+		dateDisplay : '',
+		today : '',
+		timeValue : '18:00',
+		timeDisplay : '6:00:00 PM',
 		loading : false,
 		valid: {
 			name: true,
@@ -19,7 +22,9 @@ Page({
 	onLoad : function() {
 		var d = new Date(Date.now())
 		this.setData({
-			date : d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+		    dateValue : d.toLocaleDateString(),
+		    today : d.toLocaleDateString(),
+            dateDisplay : d.toDateString(),
 		})
 	},
 	formSubmit : function(e) {
@@ -35,15 +40,19 @@ Page({
 		this.doRequest(e.detail.value)
 	},
 	bindDateChange : function(e) {
-		this.setData({
-			date : e.detail.value
-		})
-	},
-	bindTimeChange : function(e) {
-		this.setData({
-			time : e.detail.value
-		})
-	},
+        var d = new Date(e.detail.value)
+        this.setData({
+            dateValue : e.detail.value,
+            dateDisplay : d.toDateString()
+        })
+    },
+    bindTimeChange : function(e) {
+        var d = new Date('2000-01-01 ' + e.detail.value)
+        this.setData({
+            timeValue : e.detail.value,
+            timeDisplay : d.toLocaleTimeString()
+        })
+    },
 	doRequest : function(data) {
 		var that = this;
 		qcloud.request({

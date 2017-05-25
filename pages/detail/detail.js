@@ -4,16 +4,11 @@ var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
 
 Page({
     data : {
+        pageInvalid : false,
         newEvent : false,
         event : null,
-        loading : true,
-        options : null,
-        show : {
-            register : false,
-            unregister : false,
-            watch : false,
-            unwatch : false
-        },
+        pageLoading : true,
+        eventId : null,
         showParticipate : false,
         loadingParticipate : false,
         showUnparticipate : false,
@@ -22,34 +17,37 @@ Page({
         loadingWatch : false,
         showUnwatch : false,
         loadingUnwatch : false,
-        options : null,
+        showGuestsLink : false,
     },
     onLoad : function(options) {
         console.log(options);
         this.setData({
-            options : options
+            eventId : options.id,
+            newEvent : options.newEvent == 1,
+            pageInvalid : options.id == null,
         });
         this.loadEvent()
     },
     loadEvent : function() {
-        var options = this.data.options;
         var that = this;
         qcloud.request({
             // 要请求的地址
-            url : config.service.getEventUrl + '?id=' + options.id,
+            url : config.service.getEventUrl + '?id=' + that.data.eventId,
             // 请求之前是否登陆，如果该项指定为 true，会在请求之前进行登录
             login : true,
             success (result) {
                 console.log('request success', result);
                 let event = result.data.event[0];
-                that.setData({
-                    newEvent : options.newEvent == 1,
+                that.setData({                    
                     event : event,
-                    loading : false,
+                    pageLoading : false,
                     showParticipate : !event.isMine && !event.participating && !event.pending,
                     showUnparticipate : event.participating || event.pending,
                     showWatch : !event.isMine && !event.participating && !event.pending && !event.watching,
                     showUnwatch : event.watching,
+                    showGuestsLink : (event.settings.guestsVisibility == 0
+                            || (event.participating && event.settings.guestsVisibility == 1)
+                            || event.isMine)
                 })
             },
 
