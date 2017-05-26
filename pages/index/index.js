@@ -23,6 +23,18 @@ Page({
             login : true,
             success (result) {
                 console.log('页面内容载入成功，渲染开始', result);
+                result.data.events.hosting.forEach(function(val, idx, rawarray){
+					rawarray[idx].dateTime = util.datetime.nsUtcToLocalDatetime(val.dateTime).date.display
+				});
+                result.data.events.participating.forEach(function(val, idx, rawarray){
+					rawarray[idx].dateTime = util.datetime.nsUtcToLocalDatetime(val.dateTime).date.display
+				});
+                result.data.events.pending.forEach(function(val, idx, rawarray){
+					rawarray[idx].dateTime = util.datetime.nsUtcToLocalDatetime(val.dateTime).date.display
+				});
+                result.data.events.watching.forEach(function(val, idx, rawarray){
+					rawarray[idx].dateTime = util.datetime.nsUtcToLocalDatetime(val.dateTime).date.display
+				});
                 that.setData({
                     events : result.data.events,
                     unauthorized : false,

@@ -19,9 +19,9 @@ Page({
 			success (result) {
 				console.log('request success', result);
 				let events = result.data.events;
-				events.forEach(function(val, idx, rawarray){
+				/*events.forEach(function(val, idx, rawarray){
 					rawarray[idx].dateTime = val.dateTime.replace(/\-/g, '/').replace(/T/, ' ').replace(/:..\..+/, '')
-				});
+				});*/
 				that.setData({
 					events : events
 				})

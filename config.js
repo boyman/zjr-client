@@ -2,10 +2,10 @@
  * 小程序配置文件
  */
 
-//var protocol = 'http://';
-var protocol = 'https://';
-//var host = 'localhost:8444';
-var host = 'yiyihost.com'
+var protocol = 'http://';
+//var protocol = 'https://';
+var host = 'localhost:8444';
+//var host = 'yiyihost.com'
 
 var config = {
 

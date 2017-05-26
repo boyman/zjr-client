@@ -20,11 +20,12 @@ Page({
 		}
 	},
 	onLoad : function() {
-		var d = new Date(Date.now())
+		var d = util.datetime.ssLocalDatetimeFormat((new Date(Date.now())).toLocaleString())
+		console.log(d.date.system)
 		this.setData({
-		    dateValue : d.toLocaleDateString(),
-		    today : d.toLocaleDateString(),
-            dateDisplay : d.toDateString(),
+		    dateValue : d.date.system,
+		    today : d.date.system,
+            dateDisplay : d.date.display,
 		})
 	},
 	formSubmit : function(e) {
@@ -39,22 +40,23 @@ Page({
 		});
 		this.doRequest(e.detail.value)
 	},
-	bindDateChange : function(e) {
-        var d = new Date(e.detail.value)
+    bindDateChange : function(e) {
+        var d = util.datetime.ssLocalDatetimeFormat(e.detail.value)
         this.setData({
             dateValue : e.detail.value,
-            dateDisplay : d.toDateString()
+            dateDisplay : d.date.display,
         })
     },
     bindTimeChange : function(e) {
-        var d = new Date('2000-01-01 ' + e.detail.value)
+        var d = util.datetime.ssLocalTimeFormat(e.detail.value)
         this.setData({
             timeValue : e.detail.value,
-            timeDisplay : d.toLocaleTimeString()
+            timeDisplay : d.display
         })
     },
 	doRequest : function(data) {
 		var that = this;
+		data.utcTime = util.datetime.snLocalDatetimeToUtc(data.date + ' ' + data.time)
 		qcloud.request({
 			url : config.service.Url.addEvent,
 			method : 'POST',

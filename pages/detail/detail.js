@@ -37,7 +37,10 @@ Page({
             login : true,
             success (result) {
                 console.log('request success', result);
-                let event = result.data.event[0];
+                var event = result.data.event[0];
+                console.log(event.dateTime)
+                var dt = util.datetime.nsUtcToLocalDatetime(event.dateTime);
+                event.dateTime = dt.date.display + ' ' + dt.time.display
                 that.setData({                    
                     event : event,
                     pageLoading : false,

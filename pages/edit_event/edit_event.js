@@ -21,16 +21,16 @@ Page({
             login : true,
             success (result) {
                 console.log('request success', result);
-                let event = result.data.event[0];
-                let d = new Date(event.dateTime)
+                var event = result.data.event[0];
+                var d = util.datetime.nsUtcToLocalDatetime(event.dateTime);
                 that.setData({
                     pageLoading : false,
                     event : event,
                     descRemain : 140 - event.description.length,
-                    dateValue : d.toLocaleDateString(),
-                    dateDisplay : d.toDateString(),
-                    timeValue : d.toLocaleTimeString(),
-                    timeDisplay : d.toLocaleTimeString(),
+                    dateValue : d.date.system,
+                    dateDisplay : d.date.display,
+                    timeValue : d.time.system,
+                    timeDisplay : d.time.display,
                 })
             },
             fail (error) {
@@ -45,6 +45,7 @@ Page({
         console.log('form发生了submit事件，携带数据为：', e.detail.value)
         var data = e.detail.value;
         data.id = this.data.eventId;
+        data.utcTime = util.datetime.snLocalDatetimeToUtc(e.detail.value.date + ' ' + e.detail.value.time)
         var that = this
         this.setData({
             submitLoading : true
@@ -68,19 +69,17 @@ Page({
         });
     },
     bindDateChange : function(e) {
-        var d = util.datetime.stringToDate(e.detail.value)
+        var d = util.datetime.ssLocalDatetimeFormat(e.detail.value)
         this.setData({
             dateValue : e.detail.value,
-            dateDisplay : d.toDateString(),
+            dateDisplay : d.date.display,
         })
     },
     bindTimeChange : function(e) {
-        console.log(e.detail.value)
-        var d = new Date('2000-01-01 ' + e.detail.value)
-        console.log(d)
+        var d = util.datetime.ssLocalTimeFormat(e.detail.value)
         this.setData({
             timeValue : e.detail.value,
-            timeDisplay : d.toLocaleTimeString()
+            timeDisplay : d.display
         })
     },
     descChange : function(e) {

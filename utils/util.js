@@ -3,7 +3,7 @@ const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const _d = new Date();
 const _timezoneOffset = _d.getTimezoneOffset()
-const timezone = 'GMT' + (_timezoneOffset<=0?'+':'') + (-_timezoneOffset/60)
+const timezone = 'GMT' + (_timezoneOffset<=0?'+':'-') + formatNumber(Math.abs(-_timezoneOffset/60)) + '';
 
 function formatTime(date) {
   var year = date.getFullYear()
@@ -44,43 +44,63 @@ module.exports = {
     });
   },
   datetime : {
-      // default locale timezone
-      stringToDate : str => {
-          return new Date(str.replace(/-/g, '/') + ' ' + timezone)
-      },
-      stringToUTCString : str => {
-          var d = this.stringToDate(str)
-          return d.toISOString()
-      },
-      UTCStringToDate : utcStr => {
-          return new Date(utcStr.replace(/-/g, '/').replace(/T/, ' ').replace(/\.000Z/, ''))
-      }
-  },
-  formatDate : dateStr => {
-      console.log(dateStr)
-      var d = new Date(dateStr);
-      var year = d.getFullYear()
-      var month = d.getMonth()
-      var day = d.getDate()
-      var dow = d.getDay()
-      console.log(day)
-
-      return weekDays[dow] + ' ' + monthNames[month] + ' ' + day + ' ' + year;
-  },
-  dateTimeToStrings : dateTime => {
-      var d = new Date(dateTime);
-      var year = d.getFullYear()
-      var month = d.getMonth() + 1
-      var day = d.getDate()
-      var dow = d.getDay()
-
-      var hour = d.getHours()
-      var minute = d.getMinutes()
-      var second = d.getSeconds()
-      return {
-          dateDisplay : weekDays[dow] + ' ' + monthNames[month-1] + ' ' + day + ' ' + year,
-          dateStd : year + '-' + month + '-' + day,
-          timeDisplay : hour + ':' + minute,
-      }
+	  /*
+	   * @param: str: local time string w/o timezone, e.g. '2017-05-26 14:00:00'
+	   * @output: UNIX epoch
+	   */
+	  snLocalDatetimeToUtc : str => {
+		  var d = new Date(str.replace(/-/g, '/') + ' ' + timezone);
+		  return Math.floor(d.getTime() / 1000);
+	  },
+	  nsUtcToLocalDatetime : utc => {
+		  var d = new Date(utc * 1000);
+		  var year = d.getFullYear();
+          var month = d.getMonth();
+          var day = d.getDate();
+          var dow = d.getDay();
+          var hour = d.getHours();
+          var minute = d.getMinutes();          
+          return {
+        	  date : {
+        		  display : weekDays[dow] + ' ' + monthNames[month] + ' ' + day + ' ' + year,
+        		  system : year + '-' + formatNumber(month+1) + '-' + formatNumber(day),
+        	  },
+        	  time : {
+        		  display : formatNumber(hour) + ':' + formatNumber(minute),
+        		  system : formatNumber(hour) + ':' + formatNumber(minute),
+        	  }
+          }
+	  },
+	  ssLocalDatetimeFormat : str => {
+		  console.log(str)
+		  console.log(timezone)
+		  var d = new Date(str.replace(/-/g, '/') + ' ' + timezone);
+		  console.log(d)
+		  var year = d.getFullYear();
+          var month = d.getMonth();
+          var day = d.getDate();
+          var dow = d.getDay();
+          var hour = d.getHours();
+          var minute = d.getMinutes();          
+          return {
+        	  date : {
+        		  display : weekDays[dow] + ' ' + monthNames[month] + ' ' + formatNumber(day) + ' ' + year,
+        		  system : year + '-' + formatNumber(month+1) + '-' + formatNumber(day),
+        	  },
+        	  time : {
+        		  display : formatNumber(hour) + ':' + formatNumber(minute),
+        		  system : formatNumber(hour) + ':' + formatNumber(minute),
+        	  }
+          }
+	  },
+	  ssLocalTimeFormat : str => {
+		  console.log(str)
+		  var hms = str.split(':')
+		  console.log(hms)
+		  return {
+			  system : hms[0] + ':' + hms[1],
+			  display : formatNumber((hms[0]==12 ? 12 : (hms[0] % 12))) + ':' + hms[1] + ':00 ' + (hms[0]>11 ? 'PM':'AM'),
+		  }
+	  }
   }
 }
