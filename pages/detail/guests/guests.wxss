@@ -1,0 +1,53 @@
+.js-delete {
+	z-index: 2;
+	position: absolute;
+    right: 0rpx;	
+    flex-direction: column;
+	align-items: center;
+    justify-content: center;
+    color: #fff;
+	height: 180rpx;
+}
+
+.delete {
+	background: #ff5f58;
+	line-height: 180rpx;
+	width: 120rpx;
+	vertical-align:middle;
+	text-align: center;
+	float: right;
+	position: relative;
+}
+
+.approve {
+	background: #bbbbbb;
+	line-height: 180rpx;
+	width: 120rpx;
+	vertical-align:middle;
+	text-align: center;
+	float: right;
+	position: relative;
+}
+
+.js-content {
+	position: relative;
+	background: #ffffff;
+	z-index: 3;
+}
+
+.js-content:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #E5E5E5;
+  color: #E5E5E5;
+  left: 15px;
+}
+
+.js-content:first-child:before {
+  display: none;
+}
+

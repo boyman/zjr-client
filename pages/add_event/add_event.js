@@ -41,10 +41,10 @@ Page({
 		this.doRequest(e.detail.value)
 	},
     bindDateChange : function(e) {
-        var d = util.datetime.ssLocalDatetimeFormat(e.detail.value)
+        var d = util.datetime.ssLocalDateFormat(e.detail.value)
         this.setData({
             dateValue : e.detail.value,
-            dateDisplay : d.date.display,
+            dateDisplay : d.display,
         })
     },
     bindTimeChange : function(e) {

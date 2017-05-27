@@ -66,7 +66,7 @@ Page({
     },
     onShareAppMessage : function() {
         return {
-            title : '邀请您参加' + this.data.event.name,
+            title : '活动邀请',
             // TODO: thumbnail page
             path : '/pages/detail/detail?id=' + this.data.event._id
         }
