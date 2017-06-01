@@ -32,12 +32,20 @@ var config = {
             bringGuests : `${protocol}${host}/event/guest/bring`,
             thumbnail : `${protocol}${host}/event/thumbnail`,
             editEvent : `${protocol}${host}/event/edit`,
+            deleteGuest : `${protocol}${host}/event/guest/delete_guest`,
+            deletePendingGuest : `${protocol}${host}/event/guest/delete_pending`,
+            approveGuest : `${protocol}${host}/event/guest/approve`,
             test : `${protocol}${host}/event/guest/new_get`,
         },
         getEventUrl : `${protocol}${host}/event/get`,
 
         // 测试的信道服务地址
         tunnelUrl : `${protocol}${host}/tunnel`,
+    },
+    heartbeat : {
+        fast : 5, // per 5 seconds
+        medium : 10,
+        slow : 30,
     }
 };
 

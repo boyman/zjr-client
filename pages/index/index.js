@@ -13,6 +13,23 @@ Page({
         pageAge : '0秒',
         events : null
     },
+    myFun : function() {
+        console.log(Date())
+    },
+    onShow : function() {
+        console.log('Show')
+        this.setData({
+            pageRefreshInt : setInterval(this.myFun, config.heartbeat.medium * 1000)
+        });
+    },
+    onHide : function() {
+        console.log('Hide')
+        clearInterval(this.data.pageRefreshInt)
+    },
+    onUnload : function() {
+        console.log('Unload')
+        clearInterval(this.data.pageRefreshInt)
+    },
     onLoad : function() {
         this.loadPage()
     },

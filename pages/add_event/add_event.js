@@ -10,8 +10,8 @@ Page({
 		dateValue : '',
 		dateDisplay : '',
 		today : '',
-		timeValue : '18:00',
-		timeDisplay : '6:00:00 PM',
+		timeValue : '12:00',
+		timeDisplay : '12:00 PM',
 		loading : false,
 		valid: {
 			name: true,

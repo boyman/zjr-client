@@ -6,12 +6,12 @@
 	align-items: center;
     justify-content: center;
     color: #fff;
-	height: 180rpx;
+	height: 90px;
 }
 
 .delete {
 	background: #ff5f58;
-	line-height: 180rpx;
+	line-height: 90px;
 	width: 120rpx;
 	vertical-align:middle;
 	text-align: center;
@@ -21,7 +21,7 @@
 
 .approve {
 	background: #bbbbbb;
-	line-height: 180rpx;
+	line-height: 90px;
 	width: 120rpx;
 	vertical-align:middle;
 	text-align: center;

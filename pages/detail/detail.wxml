@@ -59,7 +59,7 @@
                         <block wx:if="{{showParticipate}}">
                         <button class="weui-btn" type="primary" catchtap="participate" disabled="{{loadingParticipate}}" loading="{{loadingParticipate}}">报名参加</button>
                         </block>
-                        <block wx:if="{{showUnparticipate&&!event.pending&&event.settings.allowGuests}}">
+                        <block wx:if="{{showUnparticipate&&!event.pending&&event.settings.allowGuest}}">
                             <navigator url="./bring_guests/bring_guests?eventName={{event.name}}&eventId={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
 				                <view class="weui-cell__bd">我的客人</view>
 				                <view class="weui-cell__ft weui-cell__ft_in-access"></view>

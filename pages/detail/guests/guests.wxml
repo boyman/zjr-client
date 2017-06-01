@@ -1,14 +1,33 @@
-<view class="page">
+<view class="page" bindtouchstart="touchS">
     <view class="page__bd">
-        <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__hd">共{{total}}位客人</view>
+        <view class="weui-panel weui-panel_access" wx:if="{{!event.isMine}}">
+            <view class="weui-panel__hd">共{{event.totalGuests}}位客人</view>
+            <view class="weui-panel__bd">
+            <block wx:for="{{event.guests}}" wx:for-item="guest" wx:key="openId">
+                <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{guest.image}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{guest.name}}</view>
+                        <view class="weui-media-box__desc">带{{guest.guests.length}}位客人:
+                            <block wx:for="{{guest.guests}}" wx:for-item="subguest" wx:key="*this"><text>{{subguest}} </text></block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            </view>
+        </view>
+        <view class="weui-panel weui-panel_access" wx:if="{{event.isMine}}">
+            <view class="weui-panel__hd">共{{event.totalGuests}}位客人</view>
             <view class="weui-panel__bd">
             <block wx:for="{{event.guests}}" wx:for-item="guest" wx:key="{{index}}">
                 <view class="js-delete">
-                    <view class="delete" catchtap="deleteGuest" data-open-id="{{guest.openId}}">删除</view>
-                    <view class="approve" catchtap="approveGuest" data-open-id="{{guest.openId}}">批准</view>
+                    <view class="delete" catchtap="deleteGuest" data-open-id="{{guest.openId}}" data-index="{{index}}" data-num-guests="{{guest.guests.length}}">删除</view>
                 </view>
-                <view class="js-content" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{index==indexSlideLeft?styleSlideLeft:''}}">
+                <view class="js-content" catchtouchstart="touchS" catchtouchmove="touchM" catchtouchend="touchE" 
+                data-index="{{index}}" data-open-id="{{guest.openId}}" data-width="1" data-num-guests="{{guest.guests.length}}"
+                style="{{guest.openId==openIdSlideLeft?styleSlideLeft:''}}">
 	                <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
 	                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
 	                        <image class="weui-media-box__thumb" src="{{guest.image}}" />
@@ -20,6 +39,29 @@
 	                        </view>
 	                    </view>
 	                </view>
+                </view>
+            </block>
+            </view>
+        </view>
+        <view class="weui-panel weui-panel_access" wx:if="{{event.isMine&&event.pendingGuests.length>0}}">
+            <view class="weui-panel__hd">{{event.pendingGuests.length}}个报名请求</view>
+            <view class="weui-panel__bd">
+            <block wx:for="{{event.pendingGuests}}" wx:for-item="guest" wx:key="{{index}}">
+                <view class="js-delete">
+                    <view class="delete" catchtap="deletePendingGuest" data-open-id="{{guest.openId}}" data-index="{{index}}">删除</view>
+                    <view class="approve" catchtap="approveGuest" data-open-id="{{guest.openId}}" data-index="{{index}}">批准</view>
+                </view>
+                <view class="js-content" catchtouchstart="touchS" catchtouchmove="touchM" catchtouchend="touchE" 
+                data-index="{{index}}" data-open-id="{{guest.openId}}" data-width="2" 
+                style="{{guest.openId==openIdSlideLeft?styleSlideLeft:''}}">
+                    <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="{{guest.image}}" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{guest.name}}</view>
+                        </view>
+                    </view>
                 </view>
             </block>
             </view>
