@@ -9,7 +9,8 @@
         "pages/detail/guests/guests",
         "pages/search/search",
         "pages/detail/bring_guests/bring_guests",
-        "pages/edit_event/edit_event"
+        "pages/edit_event/edit_event",
+        "pages/detail/thumbnail/thumbnail"
     ],
     "window":{
         "backgroundTextStyle":"light",

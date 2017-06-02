@@ -1,21 +1,10 @@
-<import src="../../utils/page_loading.wxml" />
-<import src="../common/error.wxml" />
+<import src="../../../utils/page_loading.wxml" />
 
 <view class="page">
-  <view wx:if="{{pageInvalid}}">
-    <template is="error" data="{{title: '无效的事件', desc: '请通过微信小程序客户端进行访问'}}"/>
-  </view>
-  <view wx:else>
     <view wx:if="{{pageLoading}}">
         <template is="page_loading"/>
     </view>
     <block wx:else>
-        <view wx:if="{{newEvent}}" class="weui-cell">
-            <view class="weui-cell__bd">
-                <button class="weui-btn mini-btn" type="default" size="mini" bindtap="backToIndex">返回我的活动</button>
-            </view>
-            <view class="weui-cell__ft">点这里分享给好友👆</view>
-        </view>
         <view class="page__hd">
             <view class="page__title with-edit">{{event.name}}</view>
         </view>
@@ -53,37 +42,14 @@
                             </navigator>
                         </view>
                         <view wx:if="{{showGuestsLink}}" class="weui-panel__ft">
-	                        <navigator url="./guests/guests?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
-	                            <view class="weui-cell__bd">查看客人名单({{event.totalGuests}}人)</view>
-	                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-	                        </navigator>
-	                    </view>                        
-                    </view>
-                    
-                    <view class="page__bd page__bd_spacing">
-                        <block wx:if="{{showParticipate}}">
-                        <button class="weui-btn" type="primary" catchtap="participate" disabled="{{loadingParticipate}}" loading="{{loadingParticipate}}">报名参加</button>
-                        </block>
-                        <block wx:if="{{showUnparticipate&&!event.pending&&event.settings.allowGuest}}">
-                            <navigator url="./bring_guests/bring_guests?eventName={{event.name}}&eventId={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-				                <view class="weui-cell__bd">我的客人</view>
-				                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-				            </navigator>
-                        </block>
-                        <block wx:if="{{event.pending}}"><view><icon type="warn" size="23" color="#F43530"></icon>请等待被组织者确认</view></block>
-                        <block wx:if="{{showUnparticipate}}">
-                            <button class="weui-btn" type="warn" catchtap="unparticipate" disabled="{{loadingUnparticipate}}" loading="{{loadingUnparticipate}}">取消报名</button>
-                        </block>
-                        <block wx:if="{{showWatch}}">
-                        <button class="weui-btn" type="default" catchtap="watch" disabled="{{loadingWatch}}" loading="{{loadingWatch}}">友情关注</button>
-                        </block>
-                        <block wx:if="{{showUnwatch}}">
-                            <button class="weui-btn" type="default" catchtap="unwatch" disabled="{{loadingUnwatch}}" loading="{{loadingUnwatch}}">取消关注</button>
-                        </block>
-                    </view>                    
+                            <navigator url="./guests/guests?id={{event._id}}" class="weui-cell weui-cell_access weui-cell_link" catchtap="showGuests">
+                                <view class="weui-cell__bd">查看客人名单({{event.totalGuests}}人)</view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                        </view>                        
+                    </view>                   
                 </view>
             </view>
         </view>
     </block>
-    </view>
 </view>

@@ -43,8 +43,8 @@ var config = {
         tunnelUrl : `${protocol}${host}/tunnel`,
     },
     heartbeat : {
-        fast : 5, // per 5 seconds
-        medium : 10,
+        fast : 8, // seconds
+        medium : 15,
         slow : 30,
     }
 };

@@ -1,0 +1,11 @@
+<template name="error">
+<view class="page__bd">
+    <view class="icon-box">
+        <icon type="warn" size="40"></icon>
+        <view class="icon-box__ctn">
+            <view class="icon-box__title">{{title}}</view>
+            <view class="icon-box__desc">{{desc}}</view>
+        </view>
+    </view> 
+</view>
+</template>

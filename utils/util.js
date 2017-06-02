@@ -1,6 +1,6 @@
 
-const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const weekDays = ['七', '一', '二', '三', '四', '五', '六'];
+const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 const _d = new Date();
 const _timezoneOffset = _d.getTimezoneOffset()
 const timezone = 'GMT' + (_timezoneOffset<=0?'+':'-') + formatNumber(Math.abs(-_timezoneOffset/60)) + '';
@@ -53,7 +53,7 @@ module.exports = {
           var hms = formatHMS(hour, minute, 0);
           return {
         	  date : {
-        		  display : weekDays[dow] + ' ' + monthNames[month] + ' ' + day + ' ' + year,
+        		  display : (year%100) + '年' + monthNames[month] + day + '日•' + weekDays[dow],
         		  system : year + '-' + formatNumber(month+1) + '-' + formatNumber(day),
         	  },
         	  time : {
@@ -63,10 +63,7 @@ module.exports = {
           }
 	  },
 	  ssLocalDatetimeFormat : str => {
-		  console.log(str)
-		  console.log(timezone)
 		  var d = new Date(str.replace(/-/g, '/') + ' ' + timezone);
-		  console.log(d)
 		  var year = d.getFullYear();
           var month = d.getMonth();
           var day = d.getDate();
@@ -76,7 +73,7 @@ module.exports = {
           var hms = formatHMS(hour, minute, 0);
           return {
         	  date : {
-        		  display : weekDays[dow] + ' ' + monthNames[month] + ' ' + formatNumber(day) + ' ' + year,
+        		  display : (year%100) + '年' + monthNames[month] + day + '日•' + weekDays[dow],
         		  system : year + '-' + formatNumber(month+1) + '-' + formatNumber(day),
         	  },
         	  time : {
@@ -86,10 +83,7 @@ module.exports = {
           }
 	  },
 	  ssLocalDateFormat : str => {
-		  console.log(str)
-		  console.log(timezone)
 		  var d = new Date(str.replace(/-/g, '/') + ' 03:00:00 ' + timezone);
-		  console.log(d)
 		  var year = d.getFullYear();
           var month = d.getMonth();
           var day = d.getDate();
@@ -97,14 +91,12 @@ module.exports = {
           var hour = d.getHours();
           var minute = d.getMinutes();          
           return {
-        	  display : weekDays[dow] + ' ' + monthNames[month] + ' ' + formatNumber(day) + ' ' + year,
+        	  display : (year%100) + '年' + monthNames[month] + day + '日•' + weekDays[dow],
         	  system : year + '-' + formatNumber(month+1) + '-' + formatNumber(day),
           }
 	  },
 	  ssLocalTimeFormat : str => {
-		  console.log(str)
 		  var hms = str.split(':')
-		  console.log(hms)
 		  hms = formatHMS(hms[0], hms[1], 0)
 		  return {
 			  system : hms[0] + ':' + hms[1],

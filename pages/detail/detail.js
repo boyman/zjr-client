@@ -4,6 +4,7 @@ var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
 
 Page({
     data : {
+        loading : false,
         pageInvalid : false,
         newEvent : false,
         event : null,
@@ -19,6 +20,19 @@ Page({
         loadingUnwatch : false,
         showGuestsLink : false,
     },
+    onHide : function() {
+        this.setData({
+            hide : true,
+        })
+        clearTimeout(this.data.refreshTimeout);
+    },
+    onShow : function() {
+        if (this.data.hide) {
+            this.setData({
+                refreshTimeout : setTimeout(this.loadPage, config.heartbeat.fast * 1000),
+            })
+        }
+    },
     onLoad : function(options) {
         console.log(options);
         this.setData({
@@ -26,14 +40,18 @@ Page({
             newEvent : options.newEvent == 1,
             pageInvalid : options.id == null,
         });
-        this.loadEvent()
+        this.loadPage()
     },
-    loadEvent : function() {
+    loadPage : function() {
+        if(this.data.pageInvalid || this.data.loading) return;
         var that = this;
+        clearTimeout(this.data.refreshTimeout);
+        this.setData({
+            updatedTime : Date.now(),
+            loading : true,
+        })
         qcloud.request({
-            // 要请求的地址
             url : config.service.getEventUrl + '?id=' + that.data.eventId,
-            // 请求之前是否登陆，如果该项指定为 true，会在请求之前进行登录
             login : true,
             success (result) {
                 console.log('request success', result);
@@ -43,7 +61,6 @@ Page({
                 event.dateTime = dt.date.display + ' ' + dt.time.display
                 that.setData({                    
                     event : event,
-                    pageLoading : false,
                     showParticipate : !event.isMine && !event.participating && !event.pending,
                     showUnparticipate : event.participating || event.pending,
                     showWatch : !event.isMine && !event.participating && !event.pending && !event.watching,
@@ -53,14 +70,16 @@ Page({
                             || event.isMine)
                 })
             },
-
             fail (error) {
-                util.showModel('系统出错了', '请联系波哥赶紧修');
                 console.log('request fail', error);
             },
-
             complete () {
                 console.log('request complete');
+                that.setData({
+                    loading : false,
+                    pageLoading : false,
+                    refreshTimeout : setTimeout(that.loadPage, config.heartbeat.medium * 1000),
+                })
             }
         });
     },
@@ -77,9 +96,7 @@ Page({
             loadingWatch : true
         })
         qcloud.request({
-            // 要请求的地址
             url : config.service.Url.watch + '?id=' + this.data.event._id,
-            // 请求之前是否登陆，如果该项指定为 true，会在请求之前进行登录
             login : true,
             success (result) {
                 console.log('request success', result);
@@ -92,12 +109,9 @@ Page({
                 });
                 that.loadEvent()
             },
-
             fail (error) {
-                util.showModel('系统出错了', '请联系波哥赶紧修');
                 console.log('request fail', error);
             },
-
             complete () {
                 console.log('request complete');
             }
