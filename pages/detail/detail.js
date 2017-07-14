@@ -107,7 +107,7 @@ Page({
                     showWatch : false,
                     showUnwatch : true
                 });
-                that.loadEvent()
+                that.loadPage()
             },
             fail (error) {
                 console.log('request fail', error);
@@ -136,7 +136,7 @@ Page({
                     showWatch : true,
                     showUnwatch : false
                 });
-                that.loadEvent()
+                that.loadPage()
             },
 
             fail (error) {
@@ -168,7 +168,7 @@ Page({
                     showWatch : false,
                     showUnwatch : false
                 });
-                that.loadEvent()
+                that.loadPage()
             },
 
             fail (error) {
@@ -200,7 +200,7 @@ Page({
                     showWatch : true,
                     showUnwatch : false
                 });
-                that.loadEvent()
+                that.loadPage()
             },
 
             fail (error) {

@@ -21,6 +21,7 @@ Page({
 	},
 	onLoad : function() {
 		var d = util.datetime.ssLocalDatetimeFormat((new Date(Date.now())).toLocaleString())
+		console.log('loading')
 		console.log(d.date.system)
 		this.setData({
 		    dateValue : d.date.system,
@@ -71,7 +72,6 @@ Page({
 				}
 			},
 			fail (error) {
-				util.showModel('请求失败', error);
 				console.log('request fail', error);
 			},
 			complete () {

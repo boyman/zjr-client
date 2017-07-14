@@ -1,7 +1,6 @@
 var util = require("../../utils/util");
 var config = require('../../config');
 var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
-var base64 = require("../images/base64");
 
 Page({
     data : {

@@ -28,7 +28,7 @@
                  <block wx:for="{{events.hosting}}" wx:for-item="event" wx:key="_id">
                      <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                          <view class="weui-cell__bd">{{event.name}}</view>
-                         <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                         <view class="weui-cell__ft weui-cell__ft_in-access small__text">{{event.dateTime}}</view>
                      </navigator>
                  </block>
              </view>
@@ -46,7 +46,7 @@
                    <block wx:for="{{events.participating}}" wx:for-item="event" wx:key="_id">
                        <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                            <view class="weui-cell__bd">{{event.name}}</view>
-                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access small__text">{{event.dateTime}}</view>
                        </navigator>
                    </block>
                </view>
@@ -63,7 +63,7 @@
                    <block wx:for="{{events.pending}}" wx:for-item="event" wx:key="_id">
                        <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                            <view class="weui-cell__bd">{{event.name}}</view>
-                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access small__text">{{event.dateTime}}</view>
                        </navigator>
                    </block>
                </view>
@@ -80,7 +80,7 @@
                    <block wx:for="{{events.watching}}" wx:for-item="event" wx:key="_id">
                        <navigator url="../detail/detail?id={{event._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                            <view class="weui-cell__bd">{{event.name}}</view>
-                           <view class="weui-cell__ft weui-cell__ft_in-access">{{event.dateTime}}</view>
+                           <view class="weui-cell__ft weui-cell__ft_in-access small__text">{{event.dateTime}}</view>
                        </navigator>
                    </block>
                </view>

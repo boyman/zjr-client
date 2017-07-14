@@ -33,3 +33,7 @@ page{
     text-align: left;
     font-size: 14px;
 }
+
+.small__text {
+	font-size: 60%;
+}
